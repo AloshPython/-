@@ -165,11 +165,11 @@ def Delete_Followeng():
         if '"status":"ok"' in done.text:
             sleep(3)
             H+=1
-            print("Done Delete user: "+users)
+            print("Done Delete user: "foou)
         elif 'Please' in done.text:
             sleep(3)
             B1+=1			
-            print("Not Delete user: "+users)
+            print("Not Delete user: "+foou)
 			
 		
 			
